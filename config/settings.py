@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config
 import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('secret_key')
+SECRET_KEY = '8bc68965v tv65c647r 75c6475c9698759876v5v5vrbtfbg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('debug')
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,11 +81,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('db_name'),
-        'USER': config('db_user'),
-        'PASSWORD': config('dp_password'),
-        'HOST': config('db_host'),
-        'PORT': config('db_port'),
+        'NAME': 'orders'
+                '',
+        'USER': 'asd',
+        'PASSWORD': 'asd',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
