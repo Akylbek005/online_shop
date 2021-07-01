@@ -42,6 +42,9 @@ INSTALLED_APPS = [
 
     # apps
     'orders.apps.OrdersConfig',
+
+    #
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
