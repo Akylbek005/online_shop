@@ -148,3 +148,5 @@ cython_debug/
 
 settings.ini
 settings.ini/
+.idea
+.idea/
