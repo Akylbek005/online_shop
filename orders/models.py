@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Product(models.Model):
     name = models.CharField(max_length=124, verbose_name='Наименование')
     description = models.TextField(verbose_name='Описание')
