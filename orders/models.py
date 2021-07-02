@@ -21,3 +21,14 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
+
+
+class OrderModels(models.Model):
+    first_name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=False)
+
+    def __str__(self):
+        return {self.first_name}, {self.product}
+
