@@ -13,4 +13,3 @@ class OrdersSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderModels
         fields = '__all__'
-
