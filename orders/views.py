@@ -1,14 +1,12 @@
-from django.shortcuts import render
 from rest_framework import status
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView
 
-from .serializer import ProductSerializer
-from .models import Product
+from .serializer import ProductSerializer, OrderProductSerializer
+from .models import Product, OrderProduct
 
 
-class AddProductAPIView(GenericAPIView):
+class AddProductView(GenericAPIView):
     serializer_class = ProductSerializer
     queryset = Product
 
@@ -24,3 +22,12 @@ class AddProductAPIView(GenericAPIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+class OrderProductView(GenericAPIView):
+    serializer_class = OrderProductSerializer
+    queryset = OrderProduct
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
