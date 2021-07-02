@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     # apps
     'orders.apps.OrdersConfig',
 
+    'rest_framework',
+
     #
     'drf_yasg',
 ]
