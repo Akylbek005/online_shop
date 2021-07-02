@@ -29,12 +29,12 @@ class OrderProductView(GenericAPIView):
     queryset = OrderProduct
 
     def post(self, request):
-        data = request.data
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
-        send_mail('Online Shop', f'Здраствуйте {data["first_name"]} вы заказали {data["product"]}.\n'
-                                 f'Ваши данные: номер телефона-{data["phone"]}, адрес-{data["address"]}',
-                  EMAIL_HOST_USER, [request.data['email']])
+        data = serializer.data
+        product = Product.objects.get(id=data.get('product'))
+        send_mail('Online Shop', f'Здраствуйте {data.get("name")}.\n'
+                                 f'Ваш заказ: Имя товара-{product.name}, цена-{product.price}\n',
+                  EMAIL_HOST_USER, [data.get('email')])
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-
