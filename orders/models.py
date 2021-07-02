@@ -25,6 +25,7 @@ class Product(models.Model):
 
 class OrderProduct(models.Model):
     name = models.CharField(max_length=50, verbose_name='Имя пользователя')
+    email = models.EmailField(verbose_name='Email')
     phone = models.CharField(max_length=20, verbose_name='Номер телефона')
     address = models.CharField(max_length=100, verbose_name='Адрес')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Продукт')
