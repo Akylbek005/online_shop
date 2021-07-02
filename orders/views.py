@@ -12,7 +12,7 @@ class AddProductAPIView(APIView):
     queryset = Product
 
     def post(self, request):
-        serializer = self.serializers(request.data)
+        serializer = self.serializers(data=request.data)
         if serializer.is_valid():
             serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
