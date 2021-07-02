@@ -19,7 +19,7 @@ class AddProductView(GenericAPIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def get(self, request):
-        queryset = self.queryset.objects.all()
+        queryset = self.queryset.objects.filter(available=True)
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
