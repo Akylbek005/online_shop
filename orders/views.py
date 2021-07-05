@@ -41,3 +41,9 @@ class OrderProductView(GenericAPIView):
                                  f'Ваш заказ: Имя товара-{product.name}, цена-{product.price}\n',
                   EMAIL_HOST_USER, [data.get('email')])
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def get(self, request):
+        """ Отправьте сюда GET запрос что бы получить все заказы"""
+        queryset = self.queryset.objects.all()
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

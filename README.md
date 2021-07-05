@@ -14,7 +14,7 @@
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }`
-8. Сделаем миграции `python manage.py migrate`
-9. Запустим проэкт `python magage.py runserver`
+8. Сделаем миграцию `python manage.py migrate`
+9. Запустим проэкт `python manage.py runserver`
 10. Заходим по [ссылке](http://127.0.0.1:8000)
 
