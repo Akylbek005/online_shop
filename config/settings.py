@@ -90,9 +90,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('name_db'),
-        'USER': config('user_db'),
-        'PASSWORD': config('password_db'),
+        'NAME': config('name_db', default='orders'),
+        'USER': config('user_db', default='asd'),
+        'PASSWORD': config('password_db', default='asd'),
         'HOST': config('host_db', default='localhost'),
         'PORT': config('port_db', default='5432'),
     }
@@ -149,9 +149,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Send email
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = config('EMAIL_HOST_USER', cast=str)
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', cast=str)
-EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', cast=str, default='iakylbek005@gmail.com')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', cast=str, default='isa2005kov')
+EMAIL_PORT = config('EMAIL_PORT', cast=int, default=587)
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool, default=True)
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
