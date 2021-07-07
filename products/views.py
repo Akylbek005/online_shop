@@ -1,24 +1,12 @@
-from rest_framework import status
+from rest_framework import status, generics, viewsets
 from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import CreateModelMixin, ListModelMixin, DestroyModelMixin, UpdateModelMixin
 
 from .serializer import ProductsSerializer
 from .models import Products
 
 
-class AddProductView(GenericAPIView):
+class ProductView(viewsets.ModelViewSet):
     serializer_class = ProductsSerializer
-    queryset = Products
-
-    def post(self, request):
-        """ Отправьте сюда POST запрос что бы добавить продукт"""
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    def get(self, request):
-        """ Отправьте сюда GET запрос что бы получить все продукты"""
-        queryset = self.queryset.objects.filter(available=True)
-        serializer = self.serializer_class(queryset, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    queryset = Products.objects.all()
