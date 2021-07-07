@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8bc68965v tv65c647r 75c6475c9698759876v5v5vrbtfbg'
+SECRET_KEY = config('SECRET_KEY', cast=str)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool, default=True)
 
 ALLOWED_HOSTS = ['*']
 
@@ -89,11 +90,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'orders',
-        'USER': 'asd',
-        'PASSWORD': 'asd',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': config('name_db'),
+        'USER': config('user_db'),
+        'PASSWORD': config('password_db'),
+        'HOST': config('host_db', default='localhost'),
+        'PORT': config('port_db', default='5432'),
     }
 }
 
@@ -148,8 +149,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Send email
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "iakylbek005@gmail.com"
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', cast=str)
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', cast=str)
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool, default=True)
+
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = 'isa2005kov'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True

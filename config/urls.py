@@ -27,7 +27,7 @@ schema_view = get_schema_view(
    openapi.Info(
       title="Online Shop",
       default_version='v1',
-      description="Test description",
+      description="Документация для online shop. Не забывайте что все пути начинаются с /api/название приложения + s",
       license=openapi.License(name="BSD License"),
    ),
    public=True,
@@ -36,7 +36,9 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     # apps
-    path('api/orders/', include('products.urls')),
+    path('api/orders/', include('orders.urls')),
+    path('api/users/', include('users.urls')),
+    path('api/products/', include('products.urls')),
 
     # documentation
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
