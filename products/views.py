@@ -2,13 +2,13 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView
 
-from .serializer import ProductSerializer
-from .models import Product
+from .serializer import ProductsSerializer
+from .models import Products
 
 
 class AddProductView(GenericAPIView):
-    serializer_class = ProductSerializer
-    queryset = Product
+    serializer_class = ProductsSerializer
+    queryset = Products
 
     def post(self, request):
         """ Отправьте сюда POST запрос что бы добавить продукт"""

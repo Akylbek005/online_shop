@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Product(models.Model):
+class Products(models.Model):
     name = models.CharField(max_length=124, verbose_name='Наименование')
     description = models.TextField(verbose_name='Описание')
     price = models.PositiveSmallIntegerField(verbose_name='Цена')
