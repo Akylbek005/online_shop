@@ -36,7 +36,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     # apps
-    path('api/orders/', include('orders.urls')),
+    path('api/orders/', include('products.urls')),
 
     # documentation
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
