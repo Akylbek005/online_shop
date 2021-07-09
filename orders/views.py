@@ -1,8 +1,13 @@
-from rest_framework import viewsets, views, generics
+from rest_framework import generics
 from rest_framework.response import Response
-from .serializers import OrdersSerializer
 
-from .models import Orders
+from products.serializer import ProductsSerializer
+from users.serializers import UserSerializer
+from orders.serializers import OrdersSerializer
+
+from products.models import Products
+from users.models import User
+from orders.models import Orders
 
 
 class OrdersView(generics.GenericAPIView):
@@ -13,9 +18,18 @@ class OrdersView(generics.GenericAPIView):
         serializer = self.get_serializer(self.get_queryset(), many=True)
         return Response(serializer.data)
 
+
+class OrdersCreateView(generics.GenericAPIView):
+    serializer_class = OrdersSerializer
+    queryset = Orders.objects.all()
+
     def post(self, request):
         data = request.data
-        serializer = self.serializer_class(data=data)
-        if serializer.is_valid():
-            serializer.save()
-        return Response(serializer.data)
+        serializer_products = ProductsSerializer(data=data)
+        serializer_user = UserSerializer(data=data)
+        if serializer_products.is_valid() and serializer_user.is_valid():
+            serializer_user.validated_data()
+            serializer_products.validated_data()
+
+            return Response({'ok': '200'})
+

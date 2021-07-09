@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from .models import Orders
+from orders.models import Orders
 from products.serializer import ProductsSerializer
 from users.serializers import UserSerializer
 
 
 class OrdersSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
-    products = ProductsSerializer(many=True, read_only=True)
+    user = UserSerializer()
+    products = ProductsSerializer()
 
     class Meta:
         model = Orders
