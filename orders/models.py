@@ -11,9 +11,6 @@ class Orders(models.Model):
     def __str__(self):
         return f'{self.user}, {self.products}'
 
-    def get_products(self):
-        return Products.objects.filter(products__orders=self)
-
     class Meta:
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'

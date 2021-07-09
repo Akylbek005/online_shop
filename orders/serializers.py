@@ -5,8 +5,8 @@ from users.serializers import UserSerializer
 
 
 class OrdersSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
-    products = ProductsSerializer(many=True)
+    user = UserSerializer(read_only=True)
+    products = ProductsSerializer(many=True, read_only=True)
 
     class Meta:
         model = Orders

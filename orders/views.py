@@ -5,9 +5,17 @@ from .serializers import OrdersSerializer
 from .models import Orders
 
 
-class OrdersView(views.APIView):
+class OrdersView(generics.GenericAPIView):
+    serializer_class = OrdersSerializer
+    queryset = Orders.objects.all()
 
     def get(self, request):
-        queryset = Orders.objects.all()
-        serializer = OrdersSerializer(queryset, many=True)
+        serializer = self.get_serializer(self.get_queryset(), many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        data = request.data
+        serializer = self.serializer_class(data=data)
+        if serializer.is_valid():
+            serializer.save()
         return Response(serializer.data)
