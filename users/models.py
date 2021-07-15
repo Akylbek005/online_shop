@@ -8,13 +8,14 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, username, email, password=None):
+    def create_user(self, username, email, password=None, **extra_fields):
         if not email:
             raise TypeError("Please, enter your email.")
 
         user = self.model(
             username=username,
             email=self.normalize_email(email),
+            **extra_fields
         )
         user.is_active = True
         user.set_password(password)
@@ -68,7 +69,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     updated_at = models.DateTimeField(auto_now=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', ]
+    REQUIRED_FIELDS = ['username', 'first_name', 'last_name', 'birthday',
+                       'gender', 'phone', 'country', 'city', 'address', 'avatar']
 
     objects = MyUserManager()
 
