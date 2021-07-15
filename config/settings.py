@@ -46,9 +46,11 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'products.apps.ProductsConfig',
 
+    # rest and auth
     'rest_framework',
-    'drf_yasg',
+    'rest_framework.authtoken',
     'djoser',
+    'drf_yasg',
 ]
 
 AUTH_USER_MODEL = 'users.User'

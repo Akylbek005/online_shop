@@ -2,7 +2,7 @@ from rest_framework import generics
 from rest_framework.response import Response
 
 from products.serializer import ProductsSerializer
-from users.serializers import UserSerializer
+from users.serializers import UsersSerializer
 from orders.serializers import OrdersSerializer
 
 from products.models import Products
@@ -26,10 +26,10 @@ class OrdersCreateView(generics.GenericAPIView):
     def post(self, request):
         data = request.data
         serializer_products = ProductsSerializer(data=data)
-        serializer_user = UserSerializer(data=data)
+        serializer_user = UsersSerializer(data=data)
         if serializer_products.is_valid() and serializer_user.is_valid():
             serializer_user.validated_data()
             serializer_products.validated_data()
 
-            return Response({'ok': '200'})
+        return Response({'ok': '200'})
 

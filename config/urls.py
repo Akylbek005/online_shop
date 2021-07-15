@@ -23,6 +23,8 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+from rest_framework.authtoken.views import obtain_auth_token
+
 schema_view = get_schema_view(
    openapi.Info(
       title="Online Shop",
@@ -39,6 +41,10 @@ urlpatterns = [
     path('api/orders/', include('orders.urls')),
     path('api/users/', include('users.urls')),
     path('api/products/', include('products.urls')),
+
+    # auth
+    path('auth/', include('djoser.urls')),
+    path('auth/token/', obtain_auth_token, name='token'),
 
     # documentation
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
