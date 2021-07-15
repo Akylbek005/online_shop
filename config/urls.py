@@ -29,7 +29,7 @@ schema_view = get_schema_view(
    openapi.Info(
       title="Online Shop",
       default_version='v1',
-      description="Документация для online shop. Не забывайте что все пути начинаются с /api/название приложения + s",
+      description="Test description",
       license=openapi.License(name="BSD License"),
    ),
    public=True,
