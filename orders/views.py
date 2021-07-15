@@ -11,6 +11,7 @@ from orders.models import Orders
 
 
 class OrdersView(generics.GenericAPIView):
+    """В разработке"""
     serializer_class = OrdersSerializer
     queryset = Orders.objects.all()
 
@@ -20,6 +21,7 @@ class OrdersView(generics.GenericAPIView):
 
 
 class OrdersCreateView(generics.GenericAPIView):
+    """В разработке"""
     serializer_class = OrdersSerializer
     queryset = Orders.objects.all()
 

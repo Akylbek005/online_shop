@@ -38,9 +38,9 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     # apps
-    path('api/orders/', include('orders.urls')),
-    path('api/users/', include('users.urls')),
-    path('api/products/', include('products.urls')),
+    path('orders/', include('orders.urls')),
+    path('users/', include('users.urls')),
+    path('products/', include('products.urls')),
 
     # auth
     path('auth/', include('djoser.urls')),
