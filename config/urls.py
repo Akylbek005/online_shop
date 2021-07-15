@@ -44,6 +44,9 @@ urlpatterns = [
 
     # auth
     path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
+    path('auth/', include('djoser.urls.jwt')),
+
     path('auth/token/', obtain_auth_token, name='token'),
 
     # documentation
