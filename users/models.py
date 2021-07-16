@@ -22,7 +22,7 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, email, password):
+    def create_superuser(self, username, email, password, **extra_fields):
         if password is None:
             raise TypeError('Superusers must have a password.')
 
@@ -30,6 +30,7 @@ class MyUserManager(BaseUserManager):
             username=username,
             email=email,
             password=password,
+            **extra_fields
         )
         user.is_active = True
         user.is_admin = True
@@ -70,7 +71,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name', 'birthday',
-                       'gender', 'phone', 'country', 'city', 'address', 'avatar']
+                       'gender', 'phone', 'country', 'city', 'address']
 
     objects = MyUserManager()
 
